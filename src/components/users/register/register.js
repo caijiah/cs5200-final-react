@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import CustomerRegister from "./customerRegister";
+import userService from "../../../services/user-services";
 
 const Register = () => {
+    const navigate = useNavigate()
     const [userInfo, setUserInfo] = useState(
         {
             username: '',
@@ -30,6 +32,21 @@ const Register = () => {
         currentAddress[name] = addressUpdate[name]
         setUserInfo({...userInfo, deliveryAddress: currentAddress})
     }
+
+    const handleRegister = () => {
+        if (userInfo.username === '' || userInfo.password === '') {
+            alert("You have to give a username and password")
+        } else {
+            userService.register(userInfo)
+                .then(newUser => {
+                    if (newUser) {
+                        navigate('/profile')
+                    } else {
+                        alert("username or company name is taken")
+                    }
+                })
+            }
+        }
 
     return (
         <div className='container'>
@@ -188,7 +205,7 @@ const Register = () => {
                 <label className="col-sm-2 col-form-label"/>
                 <div className="col-sm-10 d-grid gap-2">
                     <button
-                        onClick={() => this.handleRegister(this.state)}
+                        onClick={() => handleRegister()}
                         className="btn btn-primary">
                         Sign up
                     </button>
