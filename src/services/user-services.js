@@ -33,11 +33,24 @@ const logout = () =>
         credentials: "include"
     })
 
+const updateUserInfo = (userProfile) =>
+    fetch(`${USER_URL}/profile`, {
+        method: 'PUT',
+        credentials: "include",
+        body: JSON.stringify(userProfile),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => {
+        return response.json()
+    })
+
 const userService = {
     register,
     login,
     profile,
-    logout
+    logout,
+    updateUserInfo
 }
 
 export default userService
