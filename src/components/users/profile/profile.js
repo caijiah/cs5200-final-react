@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import userService from "../../../services/user-services";
 import {Link, useNavigate} from "react-router-dom";
 import AddressProfile from "./address-profile";
+import CustomerNavigation from "../../customers/navigation/customer-navigation";
 
 
 const Profile = () => {
@@ -76,8 +77,16 @@ const Profile = () => {
 
     return (
         <div className='container'>
-            <h1>Profile</h1>
+            <br/>
 
+            {
+                profileInfo.role.role === 'CUSTOMER' &&
+                <CustomerNavigation/>
+            }
+
+            <br/>
+
+            <h1>Profile</h1>
             <div className="mb-3 row">
                 <label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
                 <div className="col-sm-10">
