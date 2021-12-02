@@ -14,7 +14,7 @@ const findPetsByUserId = (userId) => {
 const updatePet = (petId, newPet) =>
     fetch(`${PET_URL}/pets/updatePet`, {
         method: 'PUT',
-        body: JSON.stringify({petID: petId, petUpdate: newPet}),
+        body: JSON.stringify({petId: petId, petUpdate: newPet}),
         headers: {
             'content-type': 'application/json'
         }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import EditablePet from "../editable-pet/editable-pet";
 
 const PetList = ({petList, animals, updatePet, deletePet}) => {
@@ -10,6 +10,7 @@ const PetList = ({petList, animals, updatePet, deletePet}) => {
                         className='list-group-item'>
                         <EditablePet pet={pet}
                                      animals={animals}
+                                     updatePet={updatePet}
                                      deletePet={deletePet}/>
                     </li>
                 )

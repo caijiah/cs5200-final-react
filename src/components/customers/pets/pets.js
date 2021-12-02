@@ -48,6 +48,7 @@ const Pets = () => {
                     if (matching._id === selectedAnimal) {
                         return matching._id
                     }
+                    return undefined
                 }),
                 name: "newPet",
                 gender: "none",
@@ -69,6 +70,20 @@ const Pets = () => {
             .then(res => {
                 let updatedPets = petsCache.filter(pet => {
                     return pet._id !== deletedPet._id
+                })
+                setPetsCache(updatedPets)
+            })
+    }
+
+    const handleUpdatePet = (updatedPet) => {
+        petService.updatePet(updatedPet._id, updatedPet)
+            .then(res => {
+                let updatedPets = petsCache.map(pet => {
+                    if (pet._id === updatedPet._id) {
+                        return updatedPet
+                    } else {
+                        return pet
+                    }
                 })
                 setPetsCache(updatedPets)
             })
@@ -124,6 +139,7 @@ const Pets = () => {
                     petsCache.length !== 0 &&
                     <PetList petList={petsCache}
                              animals={animalsCache}
+                             updatePet={handleUpdatePet}
                              deletePet={handleDeletePet}/>
                 }
             </div>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PetIcon from "./petIcon";
 
 const EditablePet = ({pet, animals, updatePet, deletePet}) => {
@@ -6,7 +6,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
     const [editing, setEditing] = useState(false)
     return (
         <>
-            {console.log(petCache)}
             <div className='row'>
                 {
                     !editing &&
@@ -127,10 +126,11 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                         console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
-                                                        animal: animals.find((matching)=> {
+                                                        animal: animals.find(matching => {
                                                             if (matching._id === e.target.value) {
                                                                 return matching
                                                             }
+                                                            return undefined
                                                         })
                                                     })
                                     }}
@@ -154,7 +154,7 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                         <div className='col-2 up-del-buttons'>
                             <i onClick={() => {
                                 setEditing(false)
-                                // updateProduct(productCache)
+                                updatePet(petCache)
                             }}
                                className="float-end fa fa-2x fa-check"/>
                             <i
