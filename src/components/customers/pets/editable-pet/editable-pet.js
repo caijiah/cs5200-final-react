@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PetIcon from "./petIcon";
 
 const EditablePet = ({pet, animals, updatePet, deletePet}) => {
@@ -6,6 +6,7 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
     const [editing, setEditing] = useState(false)
     return (
         <>
+            {console.log(petCache)}
             <div className='row'>
                 {
                     !editing &&
@@ -158,7 +159,7 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                className="float-end fa fa-2x fa-check"/>
                             <i
                                 onClick={() => {
-                                    // deleteProduct(productCache)
+                                    deletePet(petCache)
                                 }}
                                 className="float-end fa fa-2x fa-trash me-1"/>
                         </div>
