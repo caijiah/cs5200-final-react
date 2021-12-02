@@ -5,6 +5,8 @@ import Login from "./components/users/login/login"
 import Profile from "./components/users/profile/profile"
 import './App.css';
 import Register from "./components/users/register/register";
+import ReferralList from "./components/customers/refferals/referral-list";
+import Pets from "./components/customers/pets/pets";
 
 function App() {
     return (
@@ -15,6 +17,15 @@ function App() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/register" element={<Register/>}/>
+
+                    <Route path="/referrals" element={
+                        <div className='container-fluid'>
+                            <ReferralList/>
+                        </div>}/>
+                    <Route path="/pets" element={
+                        <div className='container-fluid'>
+                            <Pets/>
+                        </div>}/>
                 </Routes>
             </BrowserRouter>
         </div>

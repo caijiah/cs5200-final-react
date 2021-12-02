@@ -34,15 +34,22 @@ const Register = () => {
     }
 
     const handleRegister = () => {
-        if (userInfo.username === '' || userInfo.password === '') {
+        if (userInfo.username === '' || userInfo.password === '' || userInfo.companyName) {
             alert("You have to give a username and password")
+            if (userInfo.role === 'SUPPLIER') {
+                alert("You have to give a username, password and company name")
+            }
         } else {
             userService.register(userInfo)
                 .then(newUser => {
                     if (newUser) {
                         navigate('/profile')
                     } else {
-                        alert("username or company name is taken")
+                        if (userInfo.role === 'CUSTOMER') {
+                            alert("username is taken or referrer's username is wrong.")
+                        } else {
+                            alert("username or company name is taken.")
+                        }
                     }
                 })
             }
