@@ -14,7 +14,7 @@ const CustomerNavigation = () => {
             </div>
             <div className='d-grid col-3'>
                 <button
-                    // onClick={() => navigate('/shopping/store')}
+                    onClick={() => navigate('/pets')}
                     className='btn btn-primary btn-block'><i
                     className="fas fa-cat me-1"/>My pets
                 </button>
