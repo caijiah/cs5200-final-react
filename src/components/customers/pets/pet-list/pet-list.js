@@ -8,7 +8,10 @@ const PetList = ({petList, animals, updatePet, deletePet}) => {
                 petList.map((pet) =>
                     <li key={pet._id}
                         className='list-group-item'>
-                        <EditablePet pet={pet} animals={animals}/>
+                        <EditablePet pet={pet}
+                                     animals={animals}
+                                     updatePet={updatePet}
+                                     deletePet={deletePet}/>
                     </li>
                 )
             }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import userService from "../../../services/user-services";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const ReferralList = () => {
     const [referralCache, setReferralCache] = useState([])

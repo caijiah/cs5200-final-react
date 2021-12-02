@@ -39,7 +39,55 @@ const Pets = () => {
             })
     }, [navigate])
 
+    const handleCreatePet = () => {
+        if (selectedAnimal === '' || selectedAnimal === undefined) {
+            alert("You have to choose an animal type for you pet!")
+        } else {
+            const newPet = {
+                animal: animalsCache.find((matching) => {
+                    if (matching._id === selectedAnimal) {
+                        return matching._id
+                    }
+                    return undefined
+                }),
+                name: "newPet",
+                gender: "none",
+                age: 0,
+                breed: 'pet breed',
+                owner: userId
+            }
 
+            petService.createPet(newPet)
+                .then((createdPet)=> {
+                    console.log('created', createdPet)
+                    setPetsCache([...petsCache, createdPet])
+                })
+        }
+    }
+
+    const handleDeletePet = (deletedPet) => {
+        petService.deletePet(deletedPet._id)
+            .then(res => {
+                let updatedPets = petsCache.filter(pet => {
+                    return pet._id !== deletedPet._id
+                })
+                setPetsCache(updatedPets)
+            })
+    }
+
+    const handleUpdatePet = (updatedPet) => {
+        petService.updatePet(updatedPet._id, updatedPet)
+            .then(res => {
+                let updatedPets = petsCache.map(pet => {
+                    if (pet._id === updatedPet._id) {
+                        return updatedPet
+                    } else {
+                        return pet
+                    }
+                })
+                setPetsCache(updatedPets)
+            })
+    }
 
 
     return (
@@ -74,7 +122,7 @@ const Pets = () => {
                     </div>
                     <div className='col-4'>
                         <button
-                            // onClick={handleAddADrink}
+                            onClick={handleCreatePet}
                             className="btn btn-success btn-block"><i
                             className="fas fa-plus-circle me-1"/>
                             Add a Pet
@@ -90,7 +138,9 @@ const Pets = () => {
                 {
                     petsCache.length !== 0 &&
                     <PetList petList={petsCache}
-                             animals={animalsCache}/>
+                             animals={animalsCache}
+                             updatePet={handleUpdatePet}
+                             deletePet={handleDeletePet}/>
                 }
             </div>
         </>

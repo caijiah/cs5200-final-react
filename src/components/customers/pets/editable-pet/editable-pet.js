@@ -126,10 +126,11 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                         console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
-                                                        animal: animals.find((matching)=> {
+                                                        animal: animals.find(matching => {
                                                             if (matching._id === e.target.value) {
                                                                 return matching
                                                             }
+                                                            return undefined
                                                         })
                                                     })
                                     }}
@@ -153,12 +154,12 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                         <div className='col-2 up-del-buttons'>
                             <i onClick={() => {
                                 setEditing(false)
-                                // updateProduct(productCache)
+                                updatePet(petCache)
                             }}
                                className="float-end fa fa-2x fa-check"/>
                             <i
                                 onClick={() => {
-                                    // deleteProduct(productCache)
+                                    deletePet(petCache)
                                 }}
                                 className="float-end fa fa-2x fa-trash me-1"/>
                         </div>
