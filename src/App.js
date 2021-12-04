@@ -7,6 +7,7 @@ import './App.css';
 import Register from "./components/users/register/register";
 import ReferralList from "./components/customers/refferals/referral-list";
 import Pets from "./components/customers/pets/pets";
+import ManageProducts from "./components/suppliers/products/manage-products";
 
 function App() {
     return (
@@ -26,6 +27,11 @@ function App() {
                         <div className='container-fluid'>
                             <Pets/>
                         </div>}/>
+                    <Route path="/inventory" element={
+                        <div className='container-fluid'>
+                            <ManageProducts/>
+                        </div>}>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </div>

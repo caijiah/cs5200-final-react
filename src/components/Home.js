@@ -15,7 +15,7 @@ const Home = () => {
                     </div>
                 </div>
             </nav>
-            <div className="container ">
+            <div className="container">
                 <br/>
                 <div className='row'>
                     <div className="d-grid col">
