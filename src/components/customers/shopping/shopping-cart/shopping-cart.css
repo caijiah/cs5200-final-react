@@ -1,0 +1,13 @@
+.cart-editor-button {
+    cursor: pointer;
+}
+
+.cart-editor-typing {
+    height: 50px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.unavailable-warning {
+    color: tomato;
+}

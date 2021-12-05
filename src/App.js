@@ -8,6 +8,7 @@ import Register from "./components/users/register/register";
 import ReferralList from "./components/customers/refferals/referral-list";
 import Pets from "./components/customers/pets/pets";
 import ManageProducts from "./components/suppliers/products/manage-products";
+import ShoppingMain from "./components/customers/shopping/shopping-main";
 
 function App() {
     return (
@@ -31,6 +32,17 @@ function App() {
                         <div className='container-fluid'>
                             <ManageProducts/>
                         </div>}>
+                    </Route>
+
+                    <Route path='/shopping/*' element={
+                        <div className='container-fluid'>
+                            <ShoppingMain/>
+                        </div>}>
+                        <Route path=':shopBy' element={
+                            <div className='container-fluid'>
+                                <ShoppingMain/>
+                            </div>}>
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

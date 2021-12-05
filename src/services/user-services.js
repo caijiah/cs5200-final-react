@@ -45,12 +45,32 @@ const updateUserInfo = (userProfile) =>
         return response.json()
     })
 
+const findCustomerShoppingCart = (customerId) =>
+    fetch(`${USER_URL}/customer/shoppingCart`, {
+        method: 'POST',
+        body: JSON.stringify({customerId}),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(res => res.json())
+
+const updateCustomerShoppingCart = (customerId, shoppingCart) =>
+    fetch(`${USER_URL}/customer/shoppingCart`, {
+        method: 'PUT',
+        body: JSON.stringify({customerId, shoppingCart}),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(res => res.json())
+
 const userService = {
     register,
     login,
     profile,
     logout,
-    updateUserInfo
+    updateUserInfo,
+    findCustomerShoppingCart,
+    updateCustomerShoppingCart
 }
 
 export default userService
