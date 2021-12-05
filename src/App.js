@@ -10,6 +10,8 @@ import Pets from "./components/customers/pets/pets";
 import ManageProducts from "./components/suppliers/products/manage-products";
 import ShoppingMain from "./components/customers/shopping/shopping-main";
 import OrderList from "./components/customers/orders/order-list";
+import GuestBrands from "./components/users/guest-page/guest-brands";
+import GuestProducts from "./components/users/guest-page/guest-products";
 
 function App() {
     return (
@@ -48,6 +50,16 @@ function App() {
                     <Route path='/orders' element={
                         <div className='container-fluid'>
                             <OrderList/>
+                        </div>}>
+                    </Route>
+                    <Route path='/guest/brands' element={
+                        <div className='container-fluid'>
+                            <GuestBrands/>
+                        </div>}>
+                    </Route>
+                    <Route path='/guest/products' element={
+                        <div className='container-fluid'>
+                            <GuestProducts/>
                         </div>}>
                     </Route>
                 </Routes>

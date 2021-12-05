@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Col, Nav, Row, Tab} from "react-bootstrap";
-import {Route, Routes, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import ShoppingCart from "./shopping-cart/shopping-cart";
 import userService from "../../../services/user-services";
 import ShopAllProducts from "./all-products/shop-all-products";
@@ -76,6 +76,7 @@ const ShoppingMain = () => {
             if (existing.product._id === getProduct._id) {
                 return existing
             }
+            return null
         })
 
         // calculate the new total price

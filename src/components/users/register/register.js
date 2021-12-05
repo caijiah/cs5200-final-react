@@ -35,7 +35,7 @@ const Register = () => {
 
     const handleRegister = () => {
         if (userInfo.username === '' || userInfo.password === '' || userInfo.companyName) {
-            alert("You have to give a username and password")
+            alert("You have to give a username, password and email")
             if (userInfo.role === 'SUPPLIER') {
                 alert("You have to give a username, password and company name")
             }

@@ -4,7 +4,7 @@ import ProductCellCustomer from "../product-cell-customer";
 
 const ShopByCategory = ({selectedCategoryName,
                             addAProductToCart,
-                            selectedCategory,}) => {
+                            selectedCategory}) => {
     const [productsCache, setProductsCache] = useState([])
 
     useEffect(()=> {

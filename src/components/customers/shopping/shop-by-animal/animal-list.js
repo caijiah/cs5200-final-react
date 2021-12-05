@@ -10,8 +10,8 @@ const AnimalList = ({addAProductToCart}) => {
     const [selectedAnimalName, setSelectedAnimalName] = useState('')
 
     useEffect(()=> {
-        animalService.findAllAnimalsType().
-        then(types => {
+        animalService.findAllAnimalsType()
+            .then(types => {
                 setAllAnimalTypes(types)
             })
     }, [])

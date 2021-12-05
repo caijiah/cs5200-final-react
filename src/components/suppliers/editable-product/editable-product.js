@@ -17,6 +17,12 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                         </div>
                         <div className='col'>
                             Inventory: {product.inventory}
+                            {
+                                product.inventory === 0 &&
+                                <i className="unavailable-warning
+                                ms-1
+                                         float-right fas fa-exclamation-triangle"/>
+                            }
                         </div>
                         <div className='col-1'>
                             Price: ${product.price}
@@ -25,13 +31,11 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                             Weight: {product.weight} kg
                         </div>
                         <div className='col-2'>
-                            {/*Category: */}
                             <ProductIcon
                                 category={productCache.category.category}/>
                             {product.category.category}
                         </div>
                         <div className='col-2'>
-                            {/*Animal:*/}
                             <PetIcon
                                 animal={productCache.animal.animal}/>
                             {product.animal.animal}
@@ -51,18 +55,18 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                             <label>
                                 Name:
                                 <input value={productCache.name}
-                                type='text'
-                                onChange={(e) => {
-                                    if (e.target.value.length > 40) {
-                                        alert("Name is too long!")
-                                    } else {
-                                        setProductCache({
-                                            ...productCache,
-                                            name: e.target.value
-                                        })
-                                    }
-                                }}
-                                className='form-control col-2 me-3'/>
+                                       type='text'
+                                       onChange={(e) => {
+                                           if (e.target.value.length > 40) {
+                                               alert("Name is too long!")
+                                           } else {
+                                               setProductCache({
+                                                                   ...productCache,
+                                                                   name: e.target.value
+                                                               })
+                                           }
+                                       }}
+                                       className='form-control col-2 me-3'/>
                             </label>
                         </div>
                         <div className='col'>
@@ -76,9 +80,9 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                                                alert("Cannot set inventory to zero")
                                            } else {
                                                setProductCache({
-                                                               ...productCache,
-                                                               inventory: e.target.value
-                                                           })
+                                                                   ...productCache,
+                                                                   inventory: e.target.value
+                                                               })
                                            }
                                        }}
                                        className="form-control col mb-3"/>
@@ -130,7 +134,8 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                                         setProductCache({
                                                             ...productCache,
                                                             category: categories.find(matching => {
-                                                                if (matching._id === e.target.value) {
+                                                                if (matching._id
+                                                                    === e.target.value) {
                                                                     return matching
                                                                 }
                                                                 return undefined
@@ -158,14 +163,15 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                                 <select
                                     onChange={(e) => {
                                         setProductCache({
-                                                        ...productCache,
-                                                        animal: animals.find(matching => {
-                                                            if (matching._id === e.target.value) {
-                                                                return matching
-                                                            }
-                                                            return undefined
+                                                            ...productCache,
+                                                            animal: animals.find(matching => {
+                                                                if (matching._id
+                                                                    === e.target.value) {
+                                                                    return matching
+                                                                }
+                                                                return undefined
+                                                            })
                                                         })
-                                                    })
                                     }}
                                     value={productCache.animal._id}
                                     className="form-select">

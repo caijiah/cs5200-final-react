@@ -108,9 +108,7 @@ const ManageProducts = () => {
             <div>
                 <h1>Brand: {supplierInfo.companyName}</h1>
             </div>
-
             <br/>
-
             <div className='row'>
                 <h3 className='col-6'>
                     <i className="fas fa-hand-holding-usd"/>

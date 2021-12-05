@@ -7,12 +7,18 @@ const Home = () => {
     const navigate = useNavigate()
     const [loggedIn, setLoggedIn] = useState(false)
     const [userName, setUsername] = useState("")
+    const [userRole, setUserRole] = useState('')
 
     useEffect(() => {
         userService.profile()
             .then(user => {
-                setLoggedIn(true)
-                setUsername(user.username)
+                if (user) {
+                    setLoggedIn(true)
+                    setUsername(user.username)
+                    setUserRole(user.role.role)
+                } else {
+                    setLoggedIn(false)
+                }
             })
     })
 
@@ -24,17 +30,16 @@ const Home = () => {
                     <div>
                         <a className="btn btn-primary me-3" href="/login">Login</a>
                         <a className="btn btn-primary me-3" href="/register">Register</a>
-
                         {loggedIn &&
                          <>
                              <a className="btn btn-primary me-3" href="/profile">Profile</a>
-                             <a onClick={() => {
+                             <span onClick={() => {
                                  userService.logout()
                                  setLoggedIn(false)
                                  navigate('/')
                                  alert("successfully logout!")
                              }}
-                                className="btn btn-danger">Logout</a>
+                                className="btn btn-danger">Logout</span>
                          </>}
                     </div>
                 </div>
@@ -49,14 +54,25 @@ const Home = () => {
                 <div className='row'>
                     <div className="d-grid col">
                         <button className='btn btn-primary'
-                                onClick={() => navigate('/shopping/brands')}
+                                onClick={() => {
+                                    if (loggedIn && userRole === 'CUSTOMER') {
+                                        navigate('/shopping/brands')
+                                    } else {
+                                        navigate('/guest/brands')
+                                    }}}
                                 type="button">
                             Our brands
                         </button>
                     </div>
                     <div className="d-grid col">
                         <button className='btn btn-primary'
-                                onClick={()=> navigate('/shopping/products')}
+                                onClick={()=> {
+                                    if (loggedIn && userRole === 'CUSTOMER') {
+                                        navigate('/shopping/products')
+                                    } else {
+                                        navigate('/guest/products')
+                                    }}
+                                }
                                 type="button">
                             Browse Products
                         </button>

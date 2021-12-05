@@ -39,6 +39,7 @@ const Profile = () => {
             })
             .then(profile => {
                 if (profile) {
+                    console.log(profile)
                     setUserId(profile._id)
                     setProfileInfo(profile)
                 }
@@ -185,7 +186,12 @@ const Profile = () => {
                     <input type="text"
                            className="form-control"
                            id="email"
-                           readOnly
+                           onChange={(e)=>{
+                               setProfileInfo({
+                                                  ...profileInfo,
+                                                  email: e.target.value
+                                              })
+                           }}
                            placeholder="email"
                            value={profileInfo.email}
                     />
