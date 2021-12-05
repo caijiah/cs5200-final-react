@@ -1,6 +1,6 @@
 const ORDER_URL = process.env.REACT_APP_API_URL
 
-const findOrdersForBuyer = (customerId) =>
+const findOrdersForCustomer = (customerId) =>
     fetch(`${ORDER_URL}/orders`, {
         method: 'POST',
         body: JSON.stringify({customerId}),
@@ -21,7 +21,7 @@ const finishCurrentOrder = (customerId) =>
 
 const orderService = {
     finishCurrentOrder,
-    findOrdersForBuyer
+    findOrdersForCustomer
 }
 
 export default orderService

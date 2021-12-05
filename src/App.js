@@ -9,6 +9,7 @@ import ReferralList from "./components/customers/refferals/referral-list";
 import Pets from "./components/customers/pets/pets";
 import ManageProducts from "./components/suppliers/products/manage-products";
 import ShoppingMain from "./components/customers/shopping/shopping-main";
+import OrderList from "./components/customers/orders/order-list";
 
 function App() {
     return (
@@ -43,6 +44,11 @@ function App() {
                                 <ShoppingMain/>
                             </div>}>
                         </Route>
+                    </Route>
+                    <Route path='/orders' element={
+                        <div className='container-fluid'>
+                            <OrderList/>
+                        </div>}>
                     </Route>
                 </Routes>
             </BrowserRouter>
