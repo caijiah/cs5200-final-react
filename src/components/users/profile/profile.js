@@ -3,6 +3,7 @@ import userService from "../../../services/user-services";
 import {Link, useNavigate} from "react-router-dom";
 import AddressProfile from "./address-profile";
 import CustomerNavigation from "../../customers/navigation/customer-navigation";
+import SupplierNavigation from "../../suppliers/navigation/supplier-navigation";
 
 
 const Profile = () => {
@@ -82,6 +83,11 @@ const Profile = () => {
             {
                 profileInfo.role.role === 'CUSTOMER' &&
                 <CustomerNavigation/>
+            }
+
+            {
+                profileInfo.role.role === 'SUPPLIER' &&
+                <SupplierNavigation/>
             }
 
             <br/>
@@ -180,7 +186,12 @@ const Profile = () => {
                     <input type="text"
                            className="form-control"
                            id="email"
-                           readOnly
+                           onChange={(e)=>{
+                               setProfileInfo({
+                                                  ...profileInfo,
+                                                  email: e.target.value
+                                              })
+                           }}
                            placeholder="email"
                            value={profileInfo.email}
                     />
@@ -222,7 +233,9 @@ const Profile = () => {
                 <>
                     <AddressProfile profileInfo={profileInfo} updateAddress={updateAddress}/>
                     {
-                        (profileInfo.referredBy !== undefined && profileInfo.referredBy !== '') &&
+                        (profileInfo.referredBy !== undefined
+                        && profileInfo.referredBy !== null
+                        && profileInfo.referredBy !== '') &&
                         <>
                             <div className="mb-3 row">
                                 <label htmlFor="referredBy" className="col-sm-2 col-form-label">

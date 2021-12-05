@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PetIcon from "./petIcon";
+import PetIcon from "./pet-icon";
 
 const EditablePet = ({pet, animals, updatePet, deletePet}) => {
     const [petCache, setPetCache] = useState(pet)
@@ -42,7 +42,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                        onChange={(e) => {
                                            if (e.target.value.length > 20) {
                                                alert("Name is too long!")
-                                               setEditing(false)
                                            } else {
                                                setPetCache({
                                                                ...petCache,
@@ -50,7 +49,7 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                                            })
                                            }
                                        }}
-                                       className="form-control me-3"/>
+                                       className="form-control col-3 me-3"/>
                             </label>
                         </div>
                         <div className='col-1'>
@@ -98,7 +97,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                 Gender:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
                                                         gender: e.target.value
@@ -123,7 +121,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                 Type:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
                                                         animal: animals.find(matching => {
@@ -135,7 +132,7 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                                     })
                                     }}
                                     value={petCache.animal._id}
-                                    className="form-control">
+                                    className="form-select">
                                     <option value="none" disabled>
                                         Select a type
                                     </option>

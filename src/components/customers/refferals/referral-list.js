@@ -14,7 +14,6 @@ const ReferralList = () => {
             .then(profile => {
                 if (profile) {
                     setReferralCache(profile.referrals)
-                    console.log(profile.referrals)
                 }
             })
     }, [navigate])

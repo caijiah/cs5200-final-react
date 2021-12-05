@@ -24,7 +24,6 @@ const Pets = () => {
                     setUserId(profile._id)
                     petService.findPetsByUserId(profile._id)
                         .then(pets => {
-                            console.log(pets)
                             if (pets) {
                                 setPetsCache(pets)
                             }
@@ -34,7 +33,6 @@ const Pets = () => {
 
         animalService.findAllAnimalsType()
             .then(animals => {
-                console.log(animals)
                 setAnimalsCache(animals)
             })
     }, [navigate])
@@ -44,12 +42,7 @@ const Pets = () => {
             alert("You have to choose an animal type for you pet!")
         } else {
             const newPet = {
-                animal: animalsCache.find((matching) => {
-                    if (matching._id === selectedAnimal) {
-                        return matching._id
-                    }
-                    return undefined
-                }),
+                animal: selectedAnimal,
                 name: "newPet",
                 gender: "none",
                 age: 0,
@@ -58,8 +51,7 @@ const Pets = () => {
             }
 
             petService.createPet(newPet)
-                .then((createdPet)=> {
-                    console.log('created', createdPet)
+                .then((createdPet) => {
                     setPetsCache([...petsCache, createdPet])
                 })
         }
@@ -89,7 +81,6 @@ const Pets = () => {
             })
     }
 
-
     return (
         <>
             <div>
@@ -100,25 +91,27 @@ const Pets = () => {
                     <h3 className='col-10'> Add your pet:</h3>
                 </div>
                 <div className='row'>
+                    <label
+                    htmlFor='select-animal-type'>Animal type:</label>
                     <div className='col-4'>
-                        <select
-                            onChange={(e) => {
-                                console.log(e.target.value)
-                                setSelectedAnimal(e.target.value)
-                            }}
-                            defaultValue={'none'}
-                            className="form-control">
-                            <option value="none" disabled>
-                                Select a type
-                            </option>
-                            {
-                                animalsCache.map((animal, index) => {
-                                    return (<option
-                                        key={index}
-                                        value={animal._id}>{animal.animal}</option>)
-                                })
-                            }
-                        </select>
+                            <select
+                                id='select-animal-type'
+                                onChange={(e) => {
+                                    setSelectedAnimal(e.target.value)
+                                }}
+                                defaultValue={'none'}
+                                className="form-select">
+                                <option value="none" disabled>
+                                    Select animal type
+                                </option>
+                                {
+                                    animalsCache.map((animal, index) => {
+                                        return (<option
+                                            key={index}
+                                            value={animal._id}>{animal.animal}</option>)
+                                    })
+                                }
+                            </select>
                     </div>
                     <div className='col-4'>
                         <button

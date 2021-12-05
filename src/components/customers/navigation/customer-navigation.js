@@ -7,7 +7,7 @@ const CustomerNavigation = () => {
         <div className='mb-3 row'>
             <div className='d-grid col-3'>
                 <button
-                    // onClick={() => navigate('/shopping/products')}
+                    onClick={() => navigate('/shopping/products')}
                     className='btn btn-primary btn-block'>
                     <i className="fas fa-dog me-1"/>Browse products
                 </button>
@@ -21,7 +21,7 @@ const CustomerNavigation = () => {
             </div>
             <div className='d-grid col-3'>
                 <button
-                    // onClick={() => navigate('/orders')}
+                    onClick={() => navigate('/orders')}
                     className='btn btn-primary btn-block'><i
                     className="fas fa-file-invoice-dollar me-1"/>My orders
                 </button>
