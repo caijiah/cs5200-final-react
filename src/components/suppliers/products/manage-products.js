@@ -30,12 +30,10 @@ const ManageProducts = () => {
                 navigate('/')
             })
             .then(profile => {
-                console.log(profile)
                 setSupplierInfo(profile)
                 setSupplierId(profile._id)
                 productService.findProductsForSupplier(profile._id)
                     .then(products => {
-                        console.log(products)
                         if (products) {
                             setProductsCache(products)
                         }
@@ -45,7 +43,6 @@ const ManageProducts = () => {
         categoryService.findAllProductCategory()
             .then(res => {
                 setProductCategories(res)
-                console.log(res)
             })
 
         animalService.findAllAnimalsType()
@@ -69,7 +66,6 @@ const ManageProducts = () => {
                 price: price,
                 weight: weight
             }
-            console.log(newProduct)
             productService.createProduct(newProduct)
                 .then((createdProduct) => {
                     setProductsCache([...productsCache, createdProduct])
@@ -140,7 +136,6 @@ const ManageProducts = () => {
                     <select
                         id='select-product-cate'
                         onChange={(e) => {
-                            console.log(e.target.value)
                             setSelectedCategory(e.target.value)
                         }}
                         defaultValue={'none'}

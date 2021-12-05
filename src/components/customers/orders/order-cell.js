@@ -10,7 +10,6 @@ const OrderCell = ({order, num}) => {
                 {
                     order.products.map((product, index) => {
                         let getProduct = product.product
-                        console.log(getProduct)
                         return (
                             <div className="container"
                                  key={product._id}>

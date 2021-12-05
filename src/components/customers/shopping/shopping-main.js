@@ -5,6 +5,9 @@ import ShoppingCart from "./shopping-cart/shopping-cart";
 import userService from "../../../services/user-services";
 import ShopAllProducts from "./all-products/shop-all-products";
 import orderService from "../../../services/order-services";
+import BrandList from "./shop-by-brand/brand-list";
+import CategoryList from "./shop-by-category/category-list";
+import AnimalList from "./shop-by-animal/animal-list";
 
 const ShoppingMain = () => {
     const navigate = useNavigate()
@@ -13,7 +16,7 @@ const ShoppingMain = () => {
     const [shoppingCartCache, setShoppingCartCache] = useState({items: []})
     const [customerId, setCustomerId] = useState('')
 
-    useEffect(()=> {
+    useEffect(() => {
         setKey(shopBy)
         userService.profile()
             .catch(error => {
@@ -25,7 +28,6 @@ const ShoppingMain = () => {
                     setCustomerId(profile._id)
                     userService.findCustomerShoppingCart(profile._id)
                         .then(response => {
-                            console.log(response)
                             setShoppingCartCache(response.shoppingCart)
                         })
                 }
@@ -33,7 +35,6 @@ const ShoppingMain = () => {
     }, [navigate, shopBy])
 
     const addAProductToCart = (pair) => {
-        console.log(pair)
         const getProduct = pair.product
         const getQuantity = pair.quantity
         let currItems = shoppingCartCache.items
@@ -57,7 +58,7 @@ const ShoppingMain = () => {
             // newShoppingCart
             let newShoppingCart = {totalPrice: newPrice, items: newItems}
             userService.updateCustomerShoppingCart(customerId, newShoppingCart)
-                .then(status=> setShoppingCartCache(newShoppingCart))
+                .then(status => setShoppingCartCache(newShoppingCart))
         }
     }
 
@@ -67,7 +68,6 @@ const ShoppingMain = () => {
             pair.quantity = 0
         }
         const getQuantity = parseInt(pair.quantity)
-        // console.log(shoppingCartCache)
 
         // copy the shopping cart, so that we don't directly
         // work on cached shopping cart
@@ -100,7 +100,7 @@ const ShoppingMain = () => {
             newShoppingCart = {totalPrice: newPrice, items: newItems}
         }
         userService.updateCustomerShoppingCart(customerId, newShoppingCart)
-            .then(status=> setShoppingCartCache(newShoppingCart))
+            .then(status => setShoppingCartCache(newShoppingCart))
     }
 
     const payOrder = () => {
@@ -132,8 +132,7 @@ const ShoppingMain = () => {
                                        setKey(k)
                                        navigate(`/shopping/${k}`)
                                }
-                           }}
-            >
+                           }}>
                 <Row>
                     <Col sm={8}>
                         <div className='edit-button'
@@ -144,12 +143,12 @@ const ShoppingMain = () => {
                         <h1> Welcome to Shopping Page</h1>
                         <br/>
                         <Nav className='ms-1 flex-row'
-                        variant='tabs'>
+                             variant='tabs'>
                             <Nav.Item>
                                 <Nav.Link eventKey='products'>All Products</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='company'>Brands</Nav.Link>
+                                <Nav.Link eventKey='brands'>Brands</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey='animal'>Shop by Animal</Nav.Link>
@@ -162,13 +161,10 @@ const ShoppingMain = () => {
                             </Nav.Item>
                         </Nav>
                         <Tab.Content>
-                            <Tab.Pane eventKey="company">
-                                <Routes>
-                                    <Route path='/shopping/brand'>
-                                        {/*<ShoppingStoreLists*/}
-                                        {/*    handleAddAProductToCart={handleAddAProductToCart}/>*/}
-                                    </Route>
-                                </Routes>
+                            <Tab.Pane eventKey="brands">
+                                <BrandList
+                                    addAProductToCart={addAProductToCart}
+                                />
                             </Tab.Pane>
                             <Tab.Pane eventKey="products">
                                 <ShopAllProducts
@@ -176,20 +172,11 @@ const ShoppingMain = () => {
                                 />
                             </Tab.Pane>
                             <Tab.Pane eventKey="animal">
-                                <Routes>
-                                    <Route path='/shopping/animal'>
-                                        {/*<ShoppingByAllProducts*/}
-                                        {/*    handleAddAProductToCart={handleAddAProductToCart}/>*/}
-                                    </Route>
-                                </Routes>
+                                <AnimalList addAProductToCart={addAProductToCart}/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="category">
-                                <Routes>
-                                    <Route path='/shopping/category'>
-                                        {/*<ShoppingByAllProducts*/}
-                                        {/*    handleAddAProductToCart={handleAddAProductToCart}/>*/}
-                                    </Route>
-                                </Routes>
+                                <CategoryList
+                                    addAProductToCart={addAProductToCart}/>
                             </Tab.Pane>
 
                         </Tab.Content>
@@ -201,9 +188,10 @@ const ShoppingMain = () => {
                         />
                         <br/>
                         <button
-                            onClick={()=> payOrder()}
+                            onClick={() => payOrder()}
                             className='float-right btn btn-success'><i
-                            className="fas fa-cash-register me-1"/>Pay</button>
+                            className="fas fa-cash-register me-1"/>Pay
+                        </button>
                     </Col>
                 </Row>
             </Tab.Container>

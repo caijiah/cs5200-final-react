@@ -44,12 +44,27 @@ const findAllProducts = () =>
     fetch(`${PRODUCT_URL}/products`)
         .then(res => res.json())
 
+const findAllBrands = () =>
+    fetch(`${PRODUCT_URL}/products/brands`)
+        .then(res => res.json())
+
+const findProductsByAnimalType = (byAnimal) =>
+    fetch(`${PRODUCT_URL}/products/animal/${byAnimal}`)
+        .then(res => res.json())
+
+const findProductsByCategoryId = (byCategory) =>
+    fetch(`${PRODUCT_URL}/products/category/${byCategory}`)
+        .then(res => res.json())
+
 const productService = {
     findProductsForSupplier,
     updateProduct,
     createProduct,
     deleteProduct,
-    findAllProducts
+    findAllProducts,
+    findAllBrands,
+    findProductsByAnimalType,
+    findProductsByCategoryId
 }
 
 export default productService

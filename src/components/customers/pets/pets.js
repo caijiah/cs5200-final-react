@@ -24,7 +24,6 @@ const Pets = () => {
                     setUserId(profile._id)
                     petService.findPetsByUserId(profile._id)
                         .then(pets => {
-                            console.log(pets)
                             if (pets) {
                                 setPetsCache(pets)
                             }
@@ -34,7 +33,6 @@ const Pets = () => {
 
         animalService.findAllAnimalsType()
             .then(animals => {
-                console.log(animals)
                 setAnimalsCache(animals)
             })
     }, [navigate])
@@ -54,7 +52,6 @@ const Pets = () => {
 
             petService.createPet(newPet)
                 .then((createdPet) => {
-                    console.log('created', createdPet)
                     setPetsCache([...petsCache, createdPet])
                 })
         }
@@ -100,7 +97,6 @@ const Pets = () => {
                             <select
                                 id='select-animal-type'
                                 onChange={(e) => {
-                                    console.log(e.target.value)
                                     setSelectedAnimal(e.target.value)
                                 }}
                                 defaultValue={'none'}

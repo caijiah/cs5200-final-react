@@ -19,7 +19,6 @@ const OrderList = () => {
                 if (profile) {
                     orderService.findOrdersForCustomer(profile._id)
                         .then((orders) => {
-                            console.log(orders)
                             setOrdersCache(orders)
                         })
                 }

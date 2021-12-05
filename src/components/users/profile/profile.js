@@ -39,7 +39,6 @@ const Profile = () => {
             })
             .then(profile => {
                 if (profile) {
-                    console.log(profile)
                     setUserId(profile._id)
                     setProfileInfo(profile)
                 }

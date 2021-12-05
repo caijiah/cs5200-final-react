@@ -8,7 +8,6 @@ const ShopAllProducts = ({addAProductToCart}) => {
     useEffect(() => {
         productService.findAllProducts()
             .then(products => {
-                console.log(products)
                 setProductsCache(products)
             })
     }, [])

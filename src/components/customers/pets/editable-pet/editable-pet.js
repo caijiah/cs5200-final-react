@@ -97,7 +97,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                 Gender:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
                                                         gender: e.target.value
@@ -122,7 +121,6 @@ const EditablePet = ({pet, animals, updatePet, deletePet}) => {
                                 Type:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setPetCache({
                                                         ...petCache,
                                                         animal: animals.find(matching => {

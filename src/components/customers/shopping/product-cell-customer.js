@@ -8,14 +8,13 @@ const ProductCellCustomer = ({product, addAProductToCart}) => {
             <div className='row'>
                 <h4>
                     {product.supplier.companyName}
-                    <span className='me-1'/>
-                        <PetIcon animal={product.animal.animal}/>
-                        <ProductIcon category={product.category.category}/>
                 </h4>
             </div>
             <div className='row mb-2'>
                 <div className='col-3'>
                     Product Name: <b>{product.name}</b>
+                    <h3><PetIcon animal={product.animal.animal}/>
+                        <ProductIcon category={product.category.category}/></h3>
                 </div>
                 <div className='col-3'>Quantity: {product.inventory}</div>
                 <div className='col-3'>Price: ${product.price}</div>

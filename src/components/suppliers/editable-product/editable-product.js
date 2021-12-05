@@ -127,7 +127,6 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                                 Category:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setProductCache({
                                                             ...productCache,
                                                             category: categories.find(matching => {
@@ -158,7 +157,6 @@ const EditableProduct = ({product, animals, categories, updateProduct, deletePro
                                 Animal type:
                                 <select
                                     onChange={(e) => {
-                                        console.log(e.target.value)
                                         setProductCache({
                                                         ...productCache,
                                                         animal: animals.find(matching => {
