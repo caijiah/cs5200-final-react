@@ -34,7 +34,7 @@ const Register = () => {
     }
 
     const handleRegister = () => {
-        if (userInfo.username === '' || userInfo.password === '' || userInfo.companyName) {
+        if (userInfo.username === '' || userInfo.password === '' || userInfo.companyName === '') {
             alert("You have to give a username, password and email")
             if (userInfo.role === 'SUPPLIER') {
                 alert("You have to give a username, password and company name")
@@ -137,6 +137,22 @@ const Register = () => {
                                                dob: e.target.value
                                            })
                            }}/>
+                </div>
+            </div>
+
+            <div className="mb-3 row">
+                <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
+                <div className="col-sm-10">
+                    <input className="form-control"
+                           id="email"
+                           value={userInfo.email}
+                           onChange={(e) => {
+                               setUserInfo({
+                                               ...userInfo,
+                                               email: e.target.value
+                                           })
+                           }}
+                           placeholder="Example: Alice@gmail.com"/>
                 </div>
             </div>
 

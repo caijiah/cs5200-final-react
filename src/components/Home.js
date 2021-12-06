@@ -49,7 +49,7 @@ const Home = () => {
              <div className='greeting'>Hello {userName}!</div>
             }
 
-            <div className="container">
+            <div className="container main-page">
                 <br/>
                 <div className='row'>
                     <div className="d-grid col">
