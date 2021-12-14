@@ -132,7 +132,7 @@ const Register = () => {
                 <div className="col-sm-10">
                     <input className="form-control"
                            id="dob"
-                           value={userInfo.dob? userInfo.dob : ''}
+                           value={userInfo.dob}
                            type="Date"
                            onChange={(e) => {
                                setUserInfo({

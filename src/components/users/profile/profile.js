@@ -173,7 +173,7 @@ const Profile = () => {
                                               })
                            }}
                            placeholder="Date of birth"
-                           value={profileInfo.dob.split('T')[0]}
+                           value={profileInfo.dob? profileInfo.dob.split('T')[0] : ""}
                     />
                 </div>
             </div>
