@@ -34,9 +34,9 @@ const Register = () => {
     }
 
     const handleRegister = () => {
-        if (userInfo.username === '' || userInfo.password === '' || userInfo.companyName === '') {
+        if (userInfo.username === '' || userInfo.password === '' || userInfo.email === '') {
             alert("You have to give a username, password and email")
-            if (userInfo.role === 'SUPPLIER') {
+            if (userInfo.role === 'SUPPLIER' && userInfo.companyName === '') {
                 alert("You have to give a username, password and company name")
             }
         } else {
