@@ -34,8 +34,11 @@ const Register = () => {
     }
 
     const handleRegister = () => {
-        if (userInfo.username === '' || userInfo.password === '' || userInfo.email === '') {
-            alert("You have to give a username, password and email")
+        if (userInfo.username === ''
+            || userInfo.password === ''
+            || userInfo.email === ''
+            || userInfo.dob === '') {
+            alert("You have to give a username, password, email and dob")
             if (userInfo.role === 'SUPPLIER' && userInfo.companyName === '') {
                 alert("You have to give a username, password and company name")
             }
@@ -129,7 +132,7 @@ const Register = () => {
                 <div className="col-sm-10">
                     <input className="form-control"
                            id="dob"
-                           value={userInfo.dob}
+                           value={userInfo.dob? userInfo.dob : ''}
                            type="Date"
                            onChange={(e) => {
                                setUserInfo({
